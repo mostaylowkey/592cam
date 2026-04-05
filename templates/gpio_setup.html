@@ -1,0 +1,7 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="panel glass">
+  <h1>GPIO Setup</h1>
+  <pre class="code-block">{{ gpio_pins | tojson(indent=2) }}</pre>
+</section>
+{% endblock %}

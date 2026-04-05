@@ -1,0 +1,7 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="panel glass">
+  <h1>Camera Info #{{ camera_num }}</h1>
+  <pre class="code-block">{{ camera_data | tojson(indent=2) }}</pre>
+</section>
+{% endblock %}

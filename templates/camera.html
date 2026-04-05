@@ -1,0 +1,41 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="panel glass">
+  <h1>{{ camera.Model }} (Camera #{{ camera.Num }})</h1>
+  <div class="camera-layout">
+    <div class="stream-wrap glass">
+      <img class="stream" src="{{ url_for('video_feed', camera_num=camera.Num) }}" alt="Live feed" />
+      <div class="row-actions">
+        <button class="btn" data-capture="{{ camera.Num }}">Capture Still</button>
+        <a class="btn btn-ghost" href="{{ url_for('snapshot', camera_num=camera.Num) }}" target="_blank">Snapshot</a>
+      </div>
+    </div>
+    <div class="controls glass">
+      <h2>Quick Controls</h2>
+      <label>Sensor Mode</label>
+      <select id="sensor-mode" data-camera="{{ camera.Num }}">
+        {% for mode in sensor_modes %}
+        <option value="{{ loop.index0 }}" {% if loop.index0 == active_mode_index %}selected{% endif %}>Mode {{ loop.index0 }}</option>
+        {% endfor %}
+      </select>
+      <button class="btn" id="apply-sensor" data-camera="{{ camera.Num }}">Apply Sensor Mode</button>
+      <hr />
+      {% for section in settings.sections if section.enabled %}
+      <h3>{{ section.title }}</h3>
+      {% for setting in section.settings if setting.enabled %}
+      <label>{{ setting.label }}</label>
+      {% if setting.options %}
+      <select class="setting-input" data-camera="{{ camera.Num }}" data-setting="{{ setting.id }}">
+        {% for option in setting.options if option.enabled %}
+        <option value="{{ option.value }}" {% if option.value == setting.value %}selected{% endif %}>{{ option.label }}</option>
+        {% endfor %}
+      </select>
+      {% else %}
+      <input class="setting-input" type="number" step="any" value="{{ setting.value|default(setting.default, true) }}" data-camera="{{ camera.Num }}" data-setting="{{ setting.id }}" />
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

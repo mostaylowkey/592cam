@@ -1,0 +1,11 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="panel glass">
+  <h1>Edit {{ filename }}</h1>
+  <p>Use existing backend filter endpoints from this screen in your integration workflow.</p>
+  <img class="view-image" src="{{ url_for('static', filename='gallery/' + filename) }}" alt="{{ filename }}" />
+  <div class="row-actions">
+    <a class="btn btn-ghost" href="{{ url_for('view_image', filename=filename) }}">Back</a>
+  </div>
+</section>
+{% endblock %}

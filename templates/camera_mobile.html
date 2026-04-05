@@ -1,0 +1,11 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="panel glass">
+  <h1>{{ camera.Model }} Mobile</h1>
+  <img class="stream mobile" src="{{ url_for('video_feed', camera_num=camera.Num) }}" alt="Live feed" />
+  <div class="row-actions sticky-mobile">
+    <button class="btn" data-capture="{{ camera.Num }}">Capture</button>
+    <a class="btn btn-ghost" href="{{ url_for('snapshot', camera_num=camera.Num) }}" target="_blank">Snapshot</a>
+  </div>
+</section>
+{% endblock %}

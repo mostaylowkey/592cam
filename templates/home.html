@@ -1,0 +1,25 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="hero glass">
+  <h1>592-Cam Control Hub</h1>
+  <p>Modern camera control by 592 Branding. Choose a camera and jump straight into live operations.</p>
+</section>
+<section class="card-grid">
+  {% for camera_info, camera_spec in camera_list %}
+  <article class="card glass pop-in">
+    <h2>{{ camera_info.Model }}</h2>
+    <p>Camera #{{ camera_info.Num }}</p>
+    <p>{{ camera_spec.get('description', 'Ready for streaming and capture') }}</p>
+    <div class="row-actions">
+      <a class="btn" href="{{ url_for('camera', camera_num=camera_info.Num) }}">Desktop View</a>
+      <a class="btn btn-ghost" href="{{ url_for('camera_mobile', camera_num=camera_info.Num) }}">Mobile View</a>
+    </div>
+  </article>
+  {% else %}
+  <article class="card glass">
+    <h2>No Cameras Detected</h2>
+    <p>Connect a camera module and refresh.</p>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="panel glass">
+  <h1>System Settings</h1>
+  <p>Backend APIs remain unchanged; this is a 592-Cam UI refresh.</p>
+  <div class="card-grid">
+    {% for module in camera_modules %}
+    <article class="card glass">
+      <h2>{{ module.sensor_model }}</h2>
+      <p>{{ module.description|default('Camera module profile available') }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

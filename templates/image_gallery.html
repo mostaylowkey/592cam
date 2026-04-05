@@ -1,0 +1,19 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="panel glass">
+  <h1>Image Gallery</h1>
+  <div class="gallery-grid">
+    {% for file in image_files %}
+    <a class="gallery-item" href="{{ url_for('view_image', filename=file) }}">
+      <img src="{{ url_for('static', filename='gallery/' + file) }}" alt="{{ file }}" />
+      <span>{{ file }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="pagination">
+    {% for p in range(start_page, end_page + 1) %}
+    <a class="btn {% if p == page %}btn-active{% endif %}" href="{{ url_for('image_gallery', page=p) }}">{{ p }}</a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

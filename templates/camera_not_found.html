@@ -1,0 +1,8 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="panel glass">
+  <h1>Camera #{{ camera_num }} Not Found</h1>
+  <p>Return to the dashboard and verify connected devices.</p>
+  <a class="btn" href="{{ url_for('home') }}">Back Home</a>
+</section>
+{% endblock %}

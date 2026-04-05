@@ -1,0 +1,11 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<section class="panel glass">
+  <h1>{{ filename }}</h1>
+  <img class="view-image" src="{{ url_for('static', filename='gallery/' + filename) }}" alt="{{ filename }}" />
+  <div class="row-actions">
+    <a class="btn" href="{{ url_for('download_image', filename=filename) }}">Download</a>
+    <a class="btn btn-ghost" href="{{ url_for('edit_image', filename=filename) }}">Edit</a>
+  </div>
+</section>
+{% endblock %}
